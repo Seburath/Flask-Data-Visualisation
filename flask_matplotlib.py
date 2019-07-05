@@ -3,8 +3,6 @@ import random
 from flask import Flask, Response, request
 from matplotlib.backends.backend_agg import FigureCanvasAgg
 from matplotlib.backends.backend_svg import FigureCanvasSVG
-
-
 from matplotlib.figure import Figure
 
 
@@ -14,32 +12,28 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     num_x_points = int(request.args.get("num_x_points", 50))
-    # in a real app you probably want to use a flask template.
 
     return f"""
     <h1>Flask and matplotlib</h1>
-    <h2>Random data with num_x_points={num_x_points}</h2>
-    <form method=get action="/">
-      <input name="num_x_points" type=number value="{num_x_points}" />
-      <input type=submit value="update graph">
-    </form>
-    <h3>Plot as a png</h3>
-    <img src="/matplot-as-image-{num_x_points}.png"
-         alt="random points as png"
-         height="200"
-    >
-    <h3>Plot as a SVG</h3>
-    <img src="/matplot-as-image-{num_x_points}.svg"
-         alt="random points as svg"
-         height="200"
-    >
+        <h2>Random data with num_x_points={num_x_points}</h2>
+            <form method=get action="/">
+                <input name="num_x_points" type=number value="{num_x_points}" />
+                <input type=submit value="update graph">
+            </form>
+            <h3>Plot as a png</h3>
+            <img src="/matplot-as-image-{num_x_points}.png"
+                alt="random points as png"
+                height="200"
+            >
+            <h3>Plot as a SVG</h3>
+            <img src="/matplot-as-image-{num_x_points}.svg"
+                alt="random points as svg"
+                height="200"
+            >
     """
-
 
 @app.route("/matplot-as-image-<int:num_x_points>.png")
 def plot_png(num_x_points=50):
-    """ renders the plot on the fly.
-    """
     fig = Figure()
     axis = fig.add_subplot(1, 1, 1)
     x_points = range(num_x_points)
@@ -52,8 +46,6 @@ def plot_png(num_x_points=50):
 
 @app.route("/matplot-as-image-<int:num_x_points>.svg")
 def plot_svg(num_x_points=50):
-    """ renders the plot on the fly.
-    """
     fig = Figure()
     axis = fig.add_subplot(1, 1, 1)
     x_points = range(num_x_points)
@@ -65,7 +57,7 @@ def plot_svg(num_x_points=50):
 
 
 if __name__ == "__main__":
-    import webbrowser
+    #import webbrowser
 
     #webbrowser.open("http://127.0.0.1:5000/")
     app.run(debug=True)
