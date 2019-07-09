@@ -14,8 +14,8 @@ def index():
     num_x_points = int(request.args.get("num_x_points", 50))
 
     return f"""
-    <h1>Flask and matplotlib</h1>
-        <h2>Random data with num_x_points={num_x_points}</h2>
+    <h1>Flask and Matplotlib</h1>
+        <h2>Random data with {num_x_points} random points</h2>
             <form method=get action="/">
                 <input name="num_x_points" type=number value="{num_x_points}" />
                 <input type=submit value="update graph">
