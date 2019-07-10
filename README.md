@@ -1,5 +1,5 @@
-Flask examples for data visualisation.
-======================================
+Flask examples for data visualisation
+=====================================
 
 <img
   src="flask.png"
